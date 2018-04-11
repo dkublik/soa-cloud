@@ -1,0 +1,139 @@
+swagger: '2.0'
+info:
+  title: Candidate Profile API
+  version: 0.0.2
+
+host: localhost:8082
+
+securityDefinitions:
+  UserSecurity:
+    type: oauth2
+    flow: password
+    tokenUrl: /public-api/v1/candidate/oauth/token
+    scopes:
+      default: Default scope
+  api_key:
+    name: apiKey
+    description: Mandatory API key protection over public API
+    in: header
+    type: apiKey
+    x-example-dev: '6906e12342d14535a04ecdbd586c6171'
+    x-example-uat: 'Ask Hydrober team'
+
+paths:
+
+  /v1/candidates/profiles:
+    post:
+      summary: Returns profile information for given candidate id
+      description: |
+        Endpoint checks profile ID from query string
+        and returns additional profiles data from StSt
+        database.
+      tags:
+        - Profile
+      parameters:
+        - name: accountIds
+          in: body
+          description: IDs of candidates accounts ([dbo].[userlogin].[id])
+          required: true
+          schema:
+            type: object
+            properties:
+              accountIds:
+                type: array
+                items:
+                  type: string
+          x-example: "{ \"accountIds\": [4800976] }"
+      security:
+        - api_key: []
+      consumes:
+        - application/json
+      produces:
+        - application/json; charset=utf-8
+      responses:
+        200:
+          description: Success
+          schema:
+            items:
+              $ref: '#/definitions/CandidatePersonalDetailsCollection'
+        404:
+          description: |
+            Information not found if not even an account ID is existing/valid
+        500:
+          description: |
+            Server failure
+
+  /v1/candidates/profile:
+    get:
+      summary: Gets candidates profile
+      description: >-
+        Profile endpoint with OAuth
+      tags:
+        - Profile
+      security:
+        - UserSecurity: [default]
+      produces:
+        - application/json;charset=UTF-8
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/definitions/CandidatePersonalDetails'
+        401:
+          description: Invalid credentials
+
+
+definitions:
+
+  CandidateAddress:
+    description: Candidates address details
+    properties:
+      country:
+        type: string
+        description: Candidates country
+      city:
+        type: string
+        description: Candidates city
+      street:
+        type: string
+        description: Candidates street
+      zip:
+        type: string
+        description: Candidates postal code
+
+  CandidatePersonalDetails:
+    description: Candidates contact and address data, photo, description
+    required:
+      - email
+    properties:
+      login:
+        type: string
+        description: Candidates login
+      address:
+        $ref: '#/definitions/CandidateAddress'
+      name:
+        type: string
+        description: Candidates name
+      surname:
+        type: string
+        description: Candidates surname
+      email:
+        type: string
+        description: Candidates e-mail address
+      phoneNumber:
+        type: string
+        description: Candidates phone number
+      photoPath:
+        type: string
+        description: Path to candidates photo file
+      personalDescription:
+        type: string
+        description: Candidates personal description
+
+  CandidatePersonalDetailsCollection:
+    description: Collection of CandidatePersonalDetails
+    properties:
+      candidates:
+        type: array
+        items:
+          $ref: '#/definitions/CandidatePersonalDetails'

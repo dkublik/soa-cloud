@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-starter-hateoas'
+	compile('io.springfox:springfox-swagger2')
+	compile('io.springfox:springfox-swagger-ui')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+
+    testCompile('io.rest-assured:rest-assured')
+}

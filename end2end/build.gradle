@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-netflix-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter')
+
+    testCompile('junit:junit')
+    testCompile('io.rest-assured:rest-assured')
+    testCompile('org.mockito:mockito-core')
+    testCompile('com.github.tomakehurst:wiremock-standalone')
+    testCompile('com.atlassian.oai:swagger-request-validator-restassured')
+    testCompile('com.atlassian.oai:swagger-request-validator-wiremock')
+    testCompile('io.codearte.jfairy:jfairy')
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+}

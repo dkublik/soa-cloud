@@ -1,0 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-netflix-eureka-server')
+    compile('org.springframework.cloud:spring-cloud-starter')
+}
