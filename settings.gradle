@@ -1,2 +1,2 @@
-include ':ats-apply-service', ':prefill-service', ':candidate-profile-service', ':discovery-service', ':end2end'
+include ':ats-apply-service', ':prefill-service', ':candidate-profile-service', ':discovery-service', 'rest-assured-examples', ':end2end'
 
