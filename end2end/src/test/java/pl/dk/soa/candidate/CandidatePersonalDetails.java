@@ -9,8 +9,11 @@ public class CandidatePersonalDetails {
     private String phoneNumber;
     private String photoPath;
     private String personalDescription;
+    private int applicationsPosted;
+    private double lastSalaryRequested;
 
-    public CandidatePersonalDetails(String login, String name, String surname, String email, String phoneNumber, String photoPath, String personalDescription) {
+    public CandidatePersonalDetails(String login, String name, String surname, String email, String phoneNumber,
+                                    String photoPath, String personalDescription, int applicationsPosted) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -18,9 +21,11 @@ public class CandidatePersonalDetails {
         this.phoneNumber = phoneNumber;
         this.photoPath = photoPath;
         this.personalDescription = personalDescription;
+        this.applicationsPosted = applicationsPosted;
     }
 
-    public CandidatePersonalDetails() {
+    public CandidatePersonalDetails(int applicationsPosted) {
+        this.applicationsPosted = applicationsPosted;
     }
 
     public String getLogin() {
@@ -77,5 +82,17 @@ public class CandidatePersonalDetails {
 
     public void setPersonalDescription(String personalDescription) {
         this.personalDescription = personalDescription;
+    }
+
+    public int getApplicationsPosted() {
+        return applicationsPosted;
+    }
+
+    public double getLastSalaryRequested() {
+        return lastSalaryRequested;
+    }
+
+    public void setLastSalaryRequested(double lastSalaryRequested) {
+        this.lastSalaryRequested = lastSalaryRequested;
     }
 }

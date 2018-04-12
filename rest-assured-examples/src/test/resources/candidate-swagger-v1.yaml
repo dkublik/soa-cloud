@@ -129,6 +129,12 @@ definitions:
       personalDescription:
         type: string
         description: Candidates personal description
+      applicationsPosted:
+        type: number
+        description: Candidates applications posted
+      lastSalaryRequested:
+        type: number
+        description: Candidates last salary requested
 
   CandidatePersonalDetailsCollection:
     description: Collection of CandidatePersonalDetails

@@ -27,8 +27,8 @@ public class JsonPathExamples {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("candidates[0].login", is("just_britney"))
-                .body("candidates[0].address.country", is("Poland"));
+                .body("candidates[1].login", is("just_britney"))
+                .body("candidates[1].address.country", is("Poland"));
     }
 
     @Test
@@ -41,7 +41,8 @@ public class JsonPathExamples {
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .body("candidates[-1].login", is("mrpresident"))
-                .body("candidates[-1].address.country", is("Poland"));
+                .body("candidates[-1].address.country", is("Poland"))
+                .body("candidates[-1].address.country[1..5]", is("oland"));
     }
 
     @Test
@@ -67,7 +68,7 @@ public class JsonPathExamples {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("candidates.min { it.address.zip }.login", is("mrpresident"));
+                .body("candidates.min { it.address.zip }.login", is("becky007"));
     }
 
     @Test
@@ -79,8 +80,8 @@ public class JsonPathExamples {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("candidates.size()", is(3))
-                .body("candidates.login.collect { it.length() }.sum()", is(30));
+                .body("candidates.size()", is(5))
+                .body("candidates.login.collect { it.length() }.sum()", is(45));
     }
 
     @Test
@@ -90,7 +91,7 @@ public class JsonPathExamples {
 
         // then
         int size = JsonPath.from(response.asString()).getInt("candidates.size()");
-        Assert.assertEquals(3, size);
+        Assert.assertEquals(5, size);
     }
 
 }
