@@ -1,6 +1,9 @@
 apply plugin: 'java'
+apply plugin: 'groovy'
 
 dependencies {
+    compile('org.codehaus.groovy:groovy-all')
+
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')
     testCompile('org.mockito:mockito-core')

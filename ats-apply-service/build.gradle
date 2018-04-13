@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
@@ -12,8 +13,8 @@ dependencies {
     compile('com.fasterxml.jackson.core:jackson-databind')
     compile('org.apache.activemq:activemq-kahadb-store')
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
-    compile 'org.springframework.boot:spring-boot-starter'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.codehaus.groovy:groovy-all')
 
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')
