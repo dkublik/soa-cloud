@@ -16,12 +16,10 @@ import static org.hamcrest.CoreMatchers.is;
  */
 public class JsonPathExamples {
 
-    static final String CANDIDATE_HOST = "http://localhost:8082";
-
     @Test
     public void propertiesByDot() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         response.then()
@@ -34,7 +32,7 @@ public class JsonPathExamples {
     @Test
     public void propertiesByDotReverse() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         response.then()
@@ -48,7 +46,7 @@ public class JsonPathExamples {
     @Test
     public void find() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         response.then()
@@ -62,7 +60,7 @@ public class JsonPathExamples {
     @Test
     public void min() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         response.then()
@@ -74,7 +72,7 @@ public class JsonPathExamples {
     @Test
     public void aggregates() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         response.then()
@@ -87,7 +85,7 @@ public class JsonPathExamples {
     @Test
     public void extractingJsonPathObject() {
         // when
-        Response response = when().get(CANDIDATE_HOST + "/v0/candidates/profile");
+        Response response = when().get("http://localhost:8082/v0/candidates/profile");
 
         // then
         int size = JsonPath.from(response.asString()).getInt("candidates.size()");
