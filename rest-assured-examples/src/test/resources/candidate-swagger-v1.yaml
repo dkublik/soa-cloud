@@ -135,6 +135,11 @@ definitions:
       lastSalaryRequested:
         type: number
         description: Candidates last salary requested
+      avaialbleAtDays:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
 
   CandidatePersonalDetailsCollection:
     description: Collection of CandidatePersonalDetails

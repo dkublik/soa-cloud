@@ -1,5 +1,7 @@
 package pl.dk.soa.candidate.service;
 
+import java.util.List;
+
 public class CandidatePersonalDetails {
 
     private String login;
@@ -11,11 +13,12 @@ public class CandidatePersonalDetails {
     private String personalDescription;
     private int applicationsPosted;
     private double lastSalaryRequested;
+    private List<Integer> avaialbleAtDays;
     private CandidateAddress address;
 
     public CandidatePersonalDetails(String login, String name, String surname, String email, String phoneNumber,
                                     String photoPath, String personalDescription, int applicationsPosted,
-                                            double lastSalaryRequested, CandidateAddress address) {
+                                            double lastSalaryRequested, List<Integer> avaialbleAtDays, CandidateAddress address) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -25,6 +28,7 @@ public class CandidatePersonalDetails {
         this.personalDescription = personalDescription;
         this.applicationsPosted = applicationsPosted;
         this.lastSalaryRequested = lastSalaryRequested;
+        this.avaialbleAtDays = avaialbleAtDays;
         this.address = address;
     }
 
@@ -109,5 +113,13 @@ public class CandidatePersonalDetails {
 
     public void setApplicationsPosted(int applicationsPosted) {
         this.applicationsPosted = applicationsPosted;
+    }
+
+    public List<Integer> getAvaialbleAtDays() {
+        return avaialbleAtDays;
+    }
+
+    public void setAvaialbleAtDays(List<Integer> avaialbleAtDays) {
+        this.avaialbleAtDays = avaialbleAtDays;
     }
 }
