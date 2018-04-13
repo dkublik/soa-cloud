@@ -13,6 +13,7 @@ dependencies {
     compile('org.apache.activemq:activemq-kahadb-store')
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
     compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
 
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')

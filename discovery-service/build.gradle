@@ -6,4 +6,5 @@ sourceCompatibility = 1.8
 dependencies {
     compile('org.springframework.cloud:spring-cloud-netflix-eureka-server')
     compile('org.springframework.cloud:spring-cloud-starter')
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
 }
