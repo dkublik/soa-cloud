@@ -13,7 +13,7 @@ import static org.hamcrest.CoreMatchers.is;
  *  candidate-profile-service/src/main/java/pl.dk.soa.candidate/CandidateApplication must be up & running
  *  http://localhost:8082
  */
-public class AuthenticationExample {
+public class BasicAuthenticationExample {
 
     @Test
     public void shouldGetDataThatRequireAuthentication() {
