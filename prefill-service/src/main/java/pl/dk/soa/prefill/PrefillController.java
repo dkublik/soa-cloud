@@ -5,14 +5,19 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.dk.soa.prefill.add.NewPrefill;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -31,6 +36,13 @@ class PrefillController {
         return Optional.ofNullable(prefillData.get(candidateId.toLowerCase()))
                 .map(data -> new ResponseEntity(data, OK))
                 .orElse(new ResponseEntity(NOT_FOUND));
+    }
+
+    @PutMapping("{candidateId}")
+    @ApiOperation(value = "add candidate for prefill")
+    ResponseEntity<Void> addPrefill(@PathVariable String candidateId, @RequestBody @Valid NewPrefill newPrefill) {
+        prefillData.put(candidateId, new Prefill(newPrefill.getFirstName(), newPrefill.getLastName(), newPrefill.getEmail(), newPrefill.getYearOfExperience()));
+        return new ResponseEntity<>(ACCEPTED);
     }
 
     @PostConstruct

@@ -4,6 +4,7 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     compile('org.springframework.cloud:spring-cloud-netflix-eureka-server')
     compile('org.springframework.cloud:spring-cloud-starter')
+    compile('com.google.guava:guava:24.0-jre')
 
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')
