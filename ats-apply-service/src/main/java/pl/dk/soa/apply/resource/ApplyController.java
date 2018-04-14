@@ -26,7 +26,8 @@ class ApplyController {
     @ApiOperation(value = "apply for job")
     ResponseEntity<AppIdResponse> applyForJob(@RequestBody Application application) {
         StoredApplication storedApplication = applyService.apply(application);
-        return new ResponseEntity<>(new AppIdResponse(storedApplication.getId(), storedApplication.getStatus().toString()),
+        return new ResponseEntity<>(new AppIdResponse(storedApplication.getId(),
+                storedApplication.getStatus().toString(), storedApplication.getPriority().toString()),
                 ACCEPTED);
     }
 
