@@ -1,7 +1,11 @@
 package pl.dk.soa.example.hamcrest;
 
+import io.restassured.RestAssured;
+import io.restassured.config.JsonConfig;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.config.JsonPathConfig;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsCollectionWithSize;
@@ -9,10 +13,10 @@ import org.hamcrest.text.IsEqualIgnoringCase;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
+import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 
 /**
@@ -73,6 +77,22 @@ public class HamcrestExamples {
     }
 
     @Test
+    public void shouldCompareToBigDecimal() {
+        // given
+        RequestSpecification request = given().
+                config(RestAssured.config().jsonConfig(JsonConfig.jsonConfig().numberReturnType(JsonPathConfig.NumberReturnType.BIG_DECIMAL)));
+
+        // when
+        Response response = request.when().get("http://localhost:8082/v0/candidates/profile/mpatton");
+
+        // then
+        response.then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("lastSalaryRequested", CoreMatchers.is(BigDecimal.valueOf(500.0)));
+    }
+
+    @Test
     public void stringUtils() {
         // when
         Response response = when().get("http://localhost:8082/v0/candidates/profile/mpatton");
@@ -113,6 +133,20 @@ public class HamcrestExamples {
                 .body("avaialbleAtDays", CoreMatchers.everyItem(CoreMatchers.anyOf(Matchers.greaterThan(20), Matchers.lessThan(13))))
                 .body("avaialbleAtDays", CoreMatchers.hasItem(Matchers.greaterThan(8)));
     }
+
+    @Test
+    public void descriptions() {
+        // when
+        Response response = when().get("http://localhost:8082/v0/candidates/profile/mpatton");
+
+        // then
+        response.then()
+                .statusCode(200)
+                .contentType(ContentType.JSON)
+                .body("login",
+                        CoreMatchers.describedAs("sorry, only %0 allowed", Matchers.is("mpatton"), "mpatton"));
+    }
+
 
     @Test
     public void customMatcher() {
