@@ -7,7 +7,8 @@ sourceCompatibility = 1.8
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile 'org.springframework.boot:spring-boot-starter-hateoas'
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	compile('io.springfox:springfox-swagger2')
 	compile('io.springfox:springfox-swagger-ui')
     compile('org.springframework.boot:spring-boot-starter-security')
