@@ -35,9 +35,9 @@ class PrefillController {
 
     @PostConstruct
     void fillSomeData() {
-        prefillData.put("mhamill", new Prefill("Mark", "Hamill", "mark.hamill@gmail.com"));
-        prefillData.put("just_britney", new Prefill("Britney", "Spears", "just_britney@spears.pl"));
-        prefillData.put("mrpresident", new Prefill("Barack", "Obama", "mrPresident@wp.pl"));
+        prefillData.put("mhamill", new Prefill("Mark", "Hammil", "mark.hamill@gmail.com", 5));
+        prefillData.put("just_britney", new Prefill("Britney", "Spears", "just_britney@spears.pl", 1));
+        prefillData.put("mrpresident", new Prefill("Barack", "Obama", "mrPresident@wp.pl", 9));
     }
 
 }

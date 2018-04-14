@@ -16,8 +16,15 @@ public class StoredApplication {
         REJECTED
     }
 
+    public enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+
     private String id = randomUUID().toString();
     private String candidateId;
+    private Priority priority;
     private String messageToRecruiter;
     private String listingId;
     private Instant createdTime = now();
@@ -81,6 +88,14 @@ public class StoredApplication {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
 }

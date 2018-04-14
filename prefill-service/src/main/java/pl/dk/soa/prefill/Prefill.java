@@ -5,11 +5,13 @@ public class Prefill {
     private String firstName;
     private String lastName;
     private String email;
+    private int yearOfExperience;
 
-    public Prefill(String firstName, String lastName, String email) {
+    public Prefill(String firstName, String lastName, String email, int yearOfExperience) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.yearOfExperience = yearOfExperience;
     }
 
     public Prefill() {
@@ -25,5 +27,13 @@ public class Prefill {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public int getYearOfExperience() {
+        return yearOfExperience;
+    }
+
+    public void setYearOfExperience(int yearOfExperience) {
+        this.yearOfExperience = yearOfExperience;
     }
 }
