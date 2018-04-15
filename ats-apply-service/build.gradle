@@ -17,6 +17,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.codehaus.groovy:groovy-all')
     compile('cglib:cglib-nodep')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
 
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')

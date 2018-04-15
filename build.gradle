@@ -61,6 +61,7 @@ subprojects {
             dependency('org.springframework.cloud:spring-cloud-netflix:2.0.0.M8')
             dependency('org.springframework.cloud:spring-cloud-netflix-eureka-server:2.0.0.M8')
             dependency('org.springframework.cloud:spring-cloud-starter:2.0.0.M8')
+            dependency('org.springframework.cloud:spring-cloud-starter-netflix-hystrix:2.0.0.M8')
             dependency('org.codehaus.groovy:groovy-all:2.4.15')
             dependency('cglib:cglib-nodep:3.2.6')
             dependency('org.awaitility:awaitility:3.1.0')

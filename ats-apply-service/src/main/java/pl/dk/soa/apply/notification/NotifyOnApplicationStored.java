@@ -12,20 +12,17 @@ import static pl.dk.soa.apply.notification.JmsConfig.DESTINATION_NAME;
 @Service
 class NotifyOnApplicationStored {
 
-   //private static String PREFILL_ENDPOINT = "http://prefill-service/v1/prefill/for-candidate/{candidateId}";
-   private static String PREFILL_ENDPOINT = "http://localhost:8081/v1/prefill/for-candidate/{candidateId}";
-
     private final JmsTemplate jmsTemplate;
-    private final RestTemplate restTemplate;
+    private final PrefillClient prefillClient;
 
-    NotifyOnApplicationStored(JmsTemplate jmsTemplate, RestTemplate restTemplate) {
+    NotifyOnApplicationStored(JmsTemplate jmsTemplate, PrefillClient prefillClient) {
         this.jmsTemplate = jmsTemplate;
-        this.restTemplate = restTemplate;
+        this.prefillClient = prefillClient;
     }
 
     @EventListener(classes = ApplicationStoredEvent.class)
     void onApplicationPersisted(ApplicationStoredEvent event) {
-        Prefill prefillData = restTemplate.getForObject(PREFILL_ENDPOINT, Prefill.class, event.getSource().getCandidateId());
+        Prefill prefillData = prefillClient.getPrefillData(event.getSource());
         assignPriority(event.getSource(), prefillData);
         jmsTemplate.convertAndSend(DESTINATION_NAME, new Notification(event.getSource(), prefillData));
     }
