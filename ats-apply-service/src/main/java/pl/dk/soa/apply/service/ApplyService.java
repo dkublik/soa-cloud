@@ -1,14 +1,16 @@
-package pl.dk.soa.apply.resource;
+package pl.dk.soa.apply.service;
 
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
+import pl.dk.soa.apply.resource.Application;
 import pl.dk.soa.apply.store.ApplyRepository;
 import pl.dk.soa.apply.store.StoredApplication;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-class ApplyService {
+public class ApplyService {
 
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(ApplyService.class);
 
@@ -30,6 +32,10 @@ class ApplyService {
 
     public List<StoredApplication> findAll() {
         return applyRepository.findAll();
+    }
+
+    public Optional<StoredApplication> find(String id) {
+        return applyRepository.find(id);
     }
 
 }

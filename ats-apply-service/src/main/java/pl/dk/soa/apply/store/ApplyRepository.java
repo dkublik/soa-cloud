@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.util.Comparator.comparing;
 
@@ -23,6 +24,10 @@ public class ApplyRepository {
         List<StoredApplication> allApplications = new ArrayList<>(applications.values());
         allApplications.sort(comparing(StoredApplication::getCreatedTime));
         return allApplications;
+    }
+
+    public Optional<StoredApplication> find(String id) {
+        return Optional.ofNullable(applications.get(id));
     }
 
 }

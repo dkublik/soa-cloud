@@ -1,6 +1,7 @@
-package pl.dk.soa.apply.resource;
+package pl.dk.soa.apply.service;
 
 import org.springframework.stereotype.Service;
+import pl.dk.soa.apply.resource.Application;
 import pl.dk.soa.apply.store.StoredApplication;
 
 @Service
