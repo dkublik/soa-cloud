@@ -1,4 +1,4 @@
-package pl.dk.soa.apply.resourcev3;
+package pl.dk.soa.apply.resourcev4;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,22 +21,24 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(path = "/job-applications", produces = APPLICATION_JSON_VALUE, consumes = "application/vnd.apply.v3+json; charset=UTF-8")
-@Api(description = "job applications v3")
-class ApplyControllerV3 {
+@RequestMapping(path = "/job-applications", produces = APPLICATION_JSON_VALUE, consumes = "application/vnd.apply.v4+json; charset=UTF-8")
+@Api(description = "job applications v4")
+class ApplyControllerV4 {
 
     private ApplyService applyService;
+    private final ApplicationApprover applicationApprover;
 
-    ApplyControllerV3(ApplyService applyService) {
+    ApplyControllerV4(ApplyService applyService, ApplicationApprover applicationApprover) {
         this.applyService = applyService;
+        this.applicationApprover = applicationApprover;
     }
 
     @PostMapping
     @ApiOperation(value = "apply for job")
-    ResponseEntity<AppIdResponseV3> applyForJob(@RequestBody Application application) {
+    ResponseEntity<AppIdResponseV4> applyForJob(@RequestBody Application application) throws InterruptedException {
         StoredApplication storedApplication = applyService.apply(application);
-        storedApplication.accepted();
-        return new ResponseEntity<>(new AppIdResponseV3(storedApplication.getId(),
+        applicationApprover.approve(storedApplication);
+        return new ResponseEntity<>(new AppIdResponseV4(storedApplication.getId(),
                 storedApplication.getPriority().toString()),
                 ACCEPTED);
     }

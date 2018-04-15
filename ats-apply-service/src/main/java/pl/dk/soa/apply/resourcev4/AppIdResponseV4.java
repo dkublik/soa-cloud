@@ -1,15 +1,15 @@
-package pl.dk.soa.apply.resourcev3;
+package pl.dk.soa.apply.resourcev4;
 
-public class AppIdResponseV3 {
+public class AppIdResponseV4 {
     private String applicationId;
     private String priority;
 
-    public AppIdResponseV3(String applicationId, String priority) {
+    public AppIdResponseV4(String applicationId, String priority) {
         this.applicationId = applicationId;
         this.priority = priority;
     }
 
-    public AppIdResponseV3() {
+    public AppIdResponseV4() {
     }
 
     public String getApplicationId() {

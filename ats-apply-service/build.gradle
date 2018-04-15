@@ -16,6 +16,7 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.codehaus.groovy:groovy-all')
+    compile('cglib:cglib-nodep')
 
     testCompile('junit:junit')
     testCompile('io.rest-assured:rest-assured')

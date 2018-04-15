@@ -13,6 +13,6 @@ dependencies {
     testCompile('com.atlassian.oai:swagger-request-validator-restassured')
     testCompile('com.atlassian.oai:swagger-request-validator-wiremock')
     testCompile('io.codearte.jfairy:jfairy')
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.awaitility:awaitility')
 }
