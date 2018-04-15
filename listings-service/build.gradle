@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.cloud:spring-cloud-starter-zipkin')
+	compile('io.springfox:springfox-swagger2')
+	compile('io.springfox:springfox-swagger-ui')
+    compile('com.fasterxml.jackson.core:jackson-databind')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.codehaus.groovy:groovy-all')
+    compile('cglib:cglib-nodep')
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')
+
+    testCompile('junit:junit')
+    testCompile('io.rest-assured:rest-assured')
+    testCompile('org.mockito:mockito-core')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.github.tomakehurst:wiremock-standalone')
+    testCompile('org.hamcrest:hamcrest-all:1.3')
+}
