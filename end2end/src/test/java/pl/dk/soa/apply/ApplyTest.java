@@ -20,7 +20,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 public class ApplyTest {
 
     @Test
-    public void shouldGetDataForPrefill() throws Exception {
+    public void shouldSuccessfullyApply() throws Exception {
         // given
         RequestSpecification request = given()
                 .contentType(JSON)

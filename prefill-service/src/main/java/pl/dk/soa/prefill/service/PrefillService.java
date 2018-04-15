@@ -21,7 +21,7 @@ public class PrefillService {
     }
 
     public void add(String candidateId, Prefill prefill) {
-        prefillData.put(candidateId, prefill);
+        prefillData.put(candidateId.toLowerCase(), prefill);
     }
 
 }
