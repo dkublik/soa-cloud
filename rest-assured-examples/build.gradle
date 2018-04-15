@@ -11,5 +11,6 @@ dependencies {
     testCompile('com.atlassian.oai:swagger-request-validator-restassured')
     testCompile('com.atlassian.oai:swagger-request-validator-wiremock')
     testCompile('io.codearte.jfairy:jfairy')
+    testCompile('org.json:json')
 
 }
