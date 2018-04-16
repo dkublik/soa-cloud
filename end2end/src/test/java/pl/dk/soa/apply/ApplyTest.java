@@ -41,6 +41,7 @@ public class ApplyTest {
                 .statusCode(HttpStatus.ACCEPTED.value())
                 .contentType(ContentType.JSON)
                 .body("applicationId", notNullValue())
+                .body("status", is("ACCEPTED"))
                 .body("priority", is("HIGH"));
     }
 
