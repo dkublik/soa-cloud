@@ -39,7 +39,8 @@ public class ApplyTest {
                 .statusCode(HttpStatus.ACCEPTED.value())
                 .contentType(ContentType.JSON)
                 .body("applicationId", notNullValue())
-                .body("priority", is("LOW"));
+                .body("priority", is("LOW"))
+                .body("status", is("ACCEPTED"));
     }
 
     // obecnie aplikacja jest tworzona z priority = "LOW",
