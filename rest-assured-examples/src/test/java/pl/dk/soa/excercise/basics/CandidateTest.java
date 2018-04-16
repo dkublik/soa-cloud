@@ -3,7 +3,7 @@ package pl.dk.soa.excercise.basics;
 import org.junit.Test;
 
 /**
- *  prefill-service/src/main/java/pl.dk.soa.candidate.PrefillApplication must be up & running
+ *  candidate-service/src/main/java/pl.dk.soa.candidate.CandidateApplication must be up & running
  *  http://localhost:8082
  */
 public class CandidateTest {
