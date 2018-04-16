@@ -1,0 +1,13 @@
+{
+  "request": {
+    "urlPath": "/v1/prefill/for-candidate/just_britney",
+    "method": "GET"
+  },
+  "response": {
+    "headers": {
+      "Content-type": "application/json"
+    },
+    "body": "{\"email\": \"just_britney@spears.pl\", \"yearOfExperience\": 15}",
+    "status": 200
+  }
+}
