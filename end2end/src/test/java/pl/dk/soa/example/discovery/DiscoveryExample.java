@@ -30,7 +30,7 @@ public class DiscoveryExample {
     BasicDiscoveryClient basicDiscoveryClient;
 
     @Test
-    public void shouldGetDataForPrefill() throws Exception {
+    public void shouldPostApplication() throws Exception {
         // given
         RequestSpecification request = given()
                 .contentType(JSON)
