@@ -30,3 +30,7 @@ activemq-data/
 out
 
 contracts-repository/src/main/resources/mappings/
+
+application.log
+apply-application.log
+prefill-application.log
