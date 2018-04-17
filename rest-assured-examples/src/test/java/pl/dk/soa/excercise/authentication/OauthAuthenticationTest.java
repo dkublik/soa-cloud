@@ -10,7 +10,7 @@ public class OauthAuthenticationTest {
 
     @Test
     public void shouldGetDataThatRequireOauth2Authentication() {
-        // wzorujac sie na
+        // wzorujac sie na BasicAuthenticationExample
         // napisz test korzystajacy z autentykacji oauth2
         //
         // zabezpieczony przez oauth2 endpoint to "http://localhost:8082/voauth/candidates/profile"
