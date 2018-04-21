@@ -144,7 +144,7 @@ public class HamcrestExamples {
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .body("login",
-                        CoreMatchers.describedAs("sorry, only %0 allowed", Matchers.is("mpatton"), "mpatton"));
+                        CoreMatchers.describedAs("sorry, only %0 allowed", Matchers.is("britney"), "britney"));
     }
 
 

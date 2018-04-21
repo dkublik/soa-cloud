@@ -30,7 +30,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", is("mpatton"));
+                .body("candidates[-2].login", is("mpatton"));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", is(21000.0f));
+                .body("candidates.lastSalaryRequested.max()", is(21000.0f));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", is(28400.0));
+                .body("candidates.lastSalaryRequested.sum()", is(28400.0));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", is(6));
+                .body("candidates.find { it.login == 'just_britney' }.avaialbleAtDays.size()", is(6));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", hasItems("mpatton", "mrpresident"));
+                .body("candidates.findAll { it.email.endsWith('wp.pl') }.login ", hasItems("mpatton", "mrpresident"));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO", hasItems("just_britney", "mhamill", "mpatton"));
+                .body("candidates.findAll { it.avaialbleAtDays.size() > 3}.login", hasItems("just_britney", "mhamill", "mpatton"));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO",
+                .body("candidates.collect {it.login.toUpperCase()}",
                         hasItems("BECKY007", "JUST_BRITNEY", "MHAMILL", "MPATTON", "MRPRESIDENT"));
     }
 
@@ -125,7 +125,7 @@ public class JsonPathTest {
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
-                .body("TODO",
+                .body("candidates.findAll {it.photoPath.size() > 0}.photoPath.collect {it[-3..-1]}",
                     everyItem(anyOf(is("png"), is("jpg"), is("gif"))));
     }
 

@@ -1,9 +1,12 @@
 package pl.dk.soa.excercise.serdeser;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.CoreMatchers;
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
@@ -31,22 +34,16 @@ public class SerDeserTest {
         // given
         RequestSpecification request = given()
                 .contentType(JSON)
-                .body(new JSONObject()
-                        .put("candidateId", "just_britney")
-                        .put("messageToRecruiter", "please hire me")
-                        .put("listingId", "123")
-                        .toString()
-                );
+                .body(new Application("just_britney",
+                        "please hire me", "123"));
 
         // when
         Response response = request.when().post("http://localhost:8080/v1/job-applications");
 
         // then
-        response.then()
-                .statusCode(202)
-                .contentType(ContentType.JSON)
-                .body("applicationId", notNullValue())
-                .body("priority", is("LOW"));
+        AppIdResponse appIdResponse = JsonPath.from(response.asString()).getObject("$", AppIdResponse.class);
+        Assert.assertThat(appIdResponse.getApplicationId(), CoreMatchers.notNullValue());
+        Assert.assertThat(appIdResponse.getPriority(), CoreMatchers.is("LOW"));
     }
 
 }

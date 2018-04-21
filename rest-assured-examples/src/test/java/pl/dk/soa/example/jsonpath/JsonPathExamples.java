@@ -26,7 +26,8 @@ public class JsonPathExamples {
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .body("candidates[1].login", is("just_britney"))
-                .body("candidates[1].address.country", is("Poland"));
+                .body("candidates[1].address.country", is("Poland"))
+                .body("candidates.address.zip.min()", is("mark.hamill@gmail.com"));
     }
 
     @Test

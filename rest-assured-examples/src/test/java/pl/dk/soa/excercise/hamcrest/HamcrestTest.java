@@ -8,11 +8,13 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
+import org.hamcrest.number.BigDecimalCloseTo;
 import org.hamcrest.number.IsCloseTo;
 import org.hamcrest.text.IsEqualIgnoringCase;
 import org.hamcrest.text.IsEqualIgnoringWhiteSpace;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import static io.restassured.RestAssured.given;
@@ -34,8 +36,8 @@ public class HamcrestTest {
         // potrzebny matcher ingorujacy wielkosc liter
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("personalDescription", IsEqualIgnoringCase.equalToIgnoringCase("those haunting rhymes are keeping the time"));
     }
 
     @Test
@@ -48,8 +50,10 @@ public class HamcrestTest {
         // potrzebny matcher ingorujacy biale znaki
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("personalDescription", IsEqualIgnoringWhiteSpace.equalToIgnoringWhiteSpace("Those     haunting     rhymes are keeping the time"));
+
+        // TODO body
     }
 
     @Test
@@ -62,8 +66,8 @@ public class HamcrestTest {
         // potrzebny matcher ingorujacy biale znaki
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("photoPath", Matchers.stringContainsInOrder(Arrays.asList("photos", ".gif")));
     }
 
     @Test
@@ -75,21 +79,26 @@ public class HamcrestTest {
         // ostatnio zadane wynagrodzenie powinno byc albo wieksze niz 1000 mniejsze / rowne 500
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("lastSalaryRequested", Matchers.anyOf(Matchers.lessThanOrEqualTo(500f), Matchers.greaterThan(100f)));
     }
 
     @Test
     public void salaryShouldBeClose550GivenOrTake100() {
+        // given
+        RequestSpecification request = given().
+                config(RestAssured.config().jsonConfig(JsonConfig.jsonConfig().numberReturnType(JsonPathConfig.NumberReturnType.BIG_DECIMAL)));
+
+
         // when
-        Response response = when().get("http://localhost:8082/v0/candidates/profile/mpatton");
+        Response response = request.when().get("http://localhost:8082/v0/candidates/profile/mpatton");
 
         // then
         // ostatnio zadane wynagrodzenie powinno byc rowne 550 z dokladnoscia do 100
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("lastSalaryRequested",  BigDecimalCloseTo.closeTo(BigDecimal.valueOf(550.0), BigDecimal.valueOf(100.0)));
     }
 
     @Test
@@ -100,8 +109,8 @@ public class HamcrestTest {
         // then
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("avaialbleAtDays",  CoreMatchers.hasItems(9, 12, 30, 11, 8, 4));
     }
 
     @Test
@@ -114,11 +123,12 @@ public class HamcrestTest {
         // ze jest wybredny
         response.then()
                 .statusCode(200)
-                .contentType(ContentType.JSON);
-                // TODO body
+                .contentType(ContentType.JSON)
+                .body("lastSalaryRequested",
+                        CoreMatchers.describedAs("sorry, only %0 allowed", Matchers.is(500f), 500));
     }
 
-/*    @Test
+    @Test
     public void customMatcher() {
         // when
         Response response = when().get("http://localhost:8082/v0/candidates/profile/mpatton");
@@ -128,6 +138,6 @@ public class HamcrestTest {
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .body("address", AddressMatcher.hasAddress("Latvia", "Riga", "Palasta Iela 9"));
-    }*/
+    }
 
 }
